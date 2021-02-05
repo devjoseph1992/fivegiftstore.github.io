@@ -1,11 +1,21 @@
-import './App.css';
+import Navigation from "./components/Navbar";
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+
+import PageRenderer from './page-renderer'
 
 function App() {
   return (
-    <div className="App">
-      hello world
-      john
-    </div>
+    <Router>
+      <div className="App">
+        <Navigation/>
+        <Switch>
+          <Route path="/:page" component={PageRenderer} />
+          <Route path='/' render={() => <Redirect to="/home"/>} />
+          <Route component={() => 404} />
+        </Switch>
+      </div>
+    </Router>
+
   );
 }
 
